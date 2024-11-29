@@ -3,12 +3,12 @@ import styled from "styled-components"
 import { MyContext } from "../App"
 
 function Search() {
-  let {state, dispatch} = useContext(MyContext)
+  let {stateProducts, dispatchProducts} = useContext(MyContext)
 
     return (
       <SearchSection>
         <SearchHeader>SEARCH BY NAME</SearchHeader>
-        <SearchInput onInput={(ev) => dispatch({type:'SEARCH VALUE', payload: ev.target.value})} type="text" placeholder="SEARCH BY NAME"/>
+        <SearchInput onInput={(ev) => dispatchProducts({type:'SEARCH VALUE', payload: ev.target.value})} type="text" placeholder="SEARCH BY NAME"/>
       </SearchSection>
     )
   }

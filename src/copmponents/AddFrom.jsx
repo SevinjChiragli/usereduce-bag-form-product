@@ -3,12 +3,12 @@ import styled from "styled-components"
 import { MyContext } from "../App"
 
 function AddForm() {
-    let {state, dispatch} = useContext(MyContext)
+    let {stateProducts, dispatchProducts} = useContext(MyContext)
     
     return (
         <FormSection>
             <FormHeader>SEARCH BY NAME</FormHeader>
-            <FormTag onSubmit={(ev) => dispatch({type:'ADD DATA', payload: ev})}>
+            <FormTag onSubmit={(ev) => dispatchProducts({type:'ADD DATA', payload: ev})}>
                 <FormInput type="text" name="product_name" placeholder="product_name" />
                 <FormInput type="text" name="product_description"   placeholder="product_description" />
                 <FormInput type="text" name="product_price" placeholder="product_price" />

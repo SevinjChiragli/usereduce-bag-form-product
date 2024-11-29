@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { MyContext } from "../App";
 
 function ProductItem({ product }) {
-  let { state, dispatch } = useContext(MyContext);
+  let { stateProducts, dispatchProducts, dispatchBag } = useContext(MyContext);
 
   let productName = useRef("");
   let productDescription = useRef("");
@@ -16,13 +16,14 @@ function ProductItem({ product }) {
       <Price>{product.product_price}</Price>
       <Image src={product.url} alt={product.product_name} />
       <DeleteButton
-        onClick={() => dispatch({ type: "DELETE DATA", payload: product.id })}
+        onClick={() => dispatchProducts({ type: "DELETE DATA", payload: product.id })}
       >
         DELETE
       </DeleteButton>
 
       <AddButton onClick={()=>{
-          dispatch({ type: "ADD TO BAG", payload: product });
+          dispatchBag({ type: "ADD TO BAG", payload: product });
+          dispatchBag({type: "GET TOTAL SUM"})
       }}>ADD TO BAG</AddButton>
       
       <RedactButton
@@ -31,7 +32,7 @@ function ProductItem({ product }) {
           productDescription.current = product.product_description;
           productPrice.current = product.product_price;
 
-          dispatch({ type: "SHOW FORM", payload: product });
+          dispatchProducts({ type: "SHOW FORM", payload: product });
         }}
       >
         REDACT
@@ -39,7 +40,7 @@ function ProductItem({ product }) {
       {product.open && (
         <RedactForm
           onSubmit={(ev) =>
-            dispatch({
+            dispatchProducts({
               type: "CHANGE DATA",
               payload: { argument: ev, id: product.id },
             })

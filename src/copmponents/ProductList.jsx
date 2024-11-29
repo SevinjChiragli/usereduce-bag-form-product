@@ -4,9 +4,9 @@ import { useContext } from "react"
 import { MyContext } from "../App"
 
 function ProductList() {
-  let { state, dispatch } = useContext(MyContext)
+  let { stateProducts, dispatchProducts } = useContext(MyContext)
 
-  const productsArray = state.products.filter((item) => item.product_name.startsWith(state.searchValue))
+  const productsArray = stateProducts.products.filter((item) => item.product_name.startsWith(stateProducts.searchValue))
 
   return (
     <PrudctSection>

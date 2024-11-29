@@ -1,9 +1,10 @@
 import { useContext, useRef } from "react";
 import styled from "styled-components";
 import { MyContext } from "../App";
+import ProductItem from "./ProductItem";
 
 function BagItem({ product }) {
-  let { state, dispatch } = useContext(MyContext);
+  let { stateBag, dispatchBag } = useContext(MyContext);
 
   let productName = useRef("");
   let productDescription = useRef("");
@@ -15,7 +16,10 @@ function BagItem({ product }) {
       <Description>{product.product_description}</Description>
       <Price>{product.product_price}</Price>
       <Image src={product.url} alt={product.product_name} />
-      <DeleteFromBag onClick={()=>dispatch({type:'Delete From Bag',payload:product.id})}>Remove from bag</DeleteFromBag>
+      <DeleteFromBag onClick={()=>dispatchBag({type:'Delete From Bag',payload:product.id})}>Remove from bag</DeleteFromBag>
+      <DecreaseButton onClick={()=>dispatchBag({type:'DECREASE',payload:product.id})}>-</DecreaseButton>
+      <Count>{product.count}</Count>
+      <IncreaseButton onClick={()=>dispatchBag({type:'INCREASE',payload:product.id})}>+</IncreaseButton>
     </ProductItemTag>
   );
 }
@@ -40,5 +44,9 @@ const Price = styled.p``;
 const Image = styled.img``;
 
 const DeleteFromBag=styled.button``
+
+const IncreaseButton=styled.button``
+const DecreaseButton=styled.button``
+const Count=styled.p``
 
 
