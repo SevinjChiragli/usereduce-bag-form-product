@@ -15,6 +15,7 @@ function BagItem({ product }) {
       <Description>{product.product_description}</Description>
       <Price>{product.product_price}</Price>
       <Image src={product.url} alt={product.product_name} />
+      <DeleteFromBag onClick={()=>dispatch({type:'Delete From Bag',payload:product.id})}>Remove from bag</DeleteFromBag>
     </ProductItemTag>
   );
 }
@@ -37,5 +38,7 @@ const Description = styled.p``;
 const Price = styled.p``;
 
 const Image = styled.img``;
+
+const DeleteFromBag=styled.button``
 
 

@@ -22,7 +22,6 @@ export function reducer(state, action) {
         return { ...item, open: false };
       }
     });
-
     return { ...state, products: newArr };
   } else if (action.type === "CHANGE DATA") {
     action.payload.argument.preventDefault();
@@ -52,6 +51,10 @@ export function reducer(state, action) {
     newArr.push(action.payload);
     console.log(newArr)
     return { ...state, bag: newArr };
+  } else if (action.type ==='Delete From Bag'){
+    let newArr = [...state.bag];
+    let filteredArr=newArr.filter((item)=>item.id !==action.payload)
+    return{...state,bag:filteredArr}
   }
 
   return state;
